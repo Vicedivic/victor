@@ -1,4 +1,7 @@
-
+/* Competition.php: Hide mail result text */
+#text {
+  visibility: hidden;
+}
 
 /* Clear floats (clearfix hack) */
 .btn-group:after {
