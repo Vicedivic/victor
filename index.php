@@ -13,57 +13,82 @@
 
 <a href="Sport%20and%20food.php"><button>Sport and Food</button></a>
 <a href="pets.php"><button>Pets</button></a>
+<?php
+$information = [
+  'things-to-know' => [
+    'I like soccer',
+    'I like food',
+    'I like the Czech Republic',
+    'I like Denmark',
+    'I am the oldest of my siblings',
+    'I have two younger brothers',
+    'My mom is called Anna',
+    'My dad is called Andreas (Andrew)',
+    'My parents still work at a hotel in Denmark',
+  ],
+  'table-headers' => [
+    'Best Friends',
+    'Friend\'s Mom',
+    'Friend\'s Dad'
+  ],
+  'table-data' => [
+    0 => [
+      'Joseph Andreas Kristiansen',
+      'Naomi',
+      'Joseph',
+    ],
+    1 => [
+      'Nathanael Christensen',
+      'Eliza',
+      'Peter',
+    ],
+    2 => [
+      'Samuel Sejr Dalgaard',
+      'Dorthe',
+      'Joshua',
+    ],
+    3 => [
+      'Victor Fink',
+      'Helle',
+      'Peter',
+    ],
+    4 => [
+      'Simeon Joel Kristiansen',
+      'Naomi',
+      'Joseph',
+    ],
+    5 => [
+      'Noah Adelgaard',
+      'Maria',
+      'John'
+    ]
+  ]
+];
+?>
 
 <table id="customers">
-  <tr>
-    <th>Best Friends</th>
-    <th>Friend's Mom</th>
-    <th>Friend's Dad</th>
-  </tr>
-  <tr>
-    <td>Joseph Kristiansen</td>
-    <td>Naomi</td>
-    <td>Joseph</td>
-  </tr>
-  <tr>
-    <td>Nathanael Christensen</td>
-    <td>Eliza</td>
-    <td>Peter</td>
-  </tr>
-  <tr>
-    <td>Samuel Dalgaard</td>
-    <td>Dorthe</td>
-    <td>Joshua</td>
-  </tr>
-  <tr>
-    <td>Victor Fink</td>
-    <td>Helle</td>
-    <td>Peter</td>
-  </tr>
-  <tr>
-    <td>Simeon Kristiansen</td>
-    <td>Naomi</td>
-    <td>Joseph</td>
-  </tr>
-  <tr>
-    <td>Noah Adelgaard</td>
-    <td>Maria</td>
-    <td>John</td>
+  <!-- Print headers -->
+  <pre>
+  <?php print_r($information['table-data']) ?>
+  </pre>
+  <?php foreach ($information['table-headers'] as $header): ?>
+    <th><?php echo $header ?></th>
+  <?php endforeach; ?>
+  <!-- Print data -->
+  <?php foreach ($information['table-data'] as $data): ?>
+    <tr>
 
-  </tr>
+    </tr>
+  <?php endforeach; ?>
 </table>
 
 
 <h3>Things you should know about me</h3>
-<ul><li>I like soccer</li>
-  <li>I like food</li>
-  <li>I like the Czech Republic</li>
-  <li>I like Denmark</li>
-  <li>I am the oldest of my siblings</li>
-  <li>I have two younger brothers</li>
-  <li>My mom is called Anna</li>
-  <li>My dad is called Andreas (Andrew)</li>
-  <li>My parents still work at a hotel in Denmark</li></ul>
+<ul>
+  <?php foreach($information['things-to-know'] as $thing): ?>
+    <li><?php echo $thing ?></li>
+  <?php endforeach; ?>
+</ul>
 <br><br><br>
 
 
@@ -93,24 +118,5 @@
 <a href="mailto:eliasbruhn123@gmail.com?subject=Feedback to your website"><button>Feedback!</button></a>
 <button class="to-the-top" onclick="toTheTop()">To the top!</button>
 <script src="script.js"></script>
-<script>
-  $(function () {
-    $("#competition-form").submit(function (e) {
-      
-      var form_data = $(this).serialize();
-      $.ajax({
-        type: "POST",
-        url: "competition-mail.php",
-        dataType: "json", // Add datatype
-        data: form_data
-      }).done(function (data) {
-        console.log(data);
-        alert("It's OK!");
-      }).fail(function (data) {
-        console.log(data);
-      });
-    });
-  });
-</script>
 </body>
 </html>
