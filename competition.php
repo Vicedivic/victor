@@ -40,7 +40,7 @@ require 'vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 //Server settings
-$mail->SMTPDebug = 2;
+$mail->SMTPDebug = 0;
 $mail->isSMTP();
 $mail->Host = 's1.mailprovider.email';
 $mail->SMTPAuth = true;
