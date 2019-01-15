@@ -68,16 +68,16 @@ $information = [
 
 <table id="customers">
   <!-- Print headers -->
-  <pre>
-  <?php print_r($information['table-data']) ?>
-  </pre>
+
   <?php foreach ($information['table-headers'] as $header): ?>
     <th><?php echo $header ?></th>
   <?php endforeach; ?>
   <!-- Print data -->
   <?php foreach ($information['table-data'] as $data): ?>
     <tr>
-
+      <?php foreach ($data as $person): ?>
+        <td><?php echo $person ?></td>
+      <?php endforeach; ?>
     </tr>
   <?php endforeach; ?>
 </table>
