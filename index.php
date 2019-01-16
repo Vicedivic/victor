@@ -14,6 +14,8 @@
 <a href="Sport%20and%20food.php"><button>Sport and Food</button></a>
 <a href="pets.php"><button>Pets</button></a>
 <?php
+
+
 $information = [
   'things-to-know' => [
     'I like soccer',
@@ -64,6 +66,7 @@ $information = [
     ]
   ]
 ];
+
 ?>
 
 <table id="customers">
@@ -99,10 +102,10 @@ $information = [
 
 <form id="competition-form" action="competition.php" method="post">
   <label for="fname">First Name</label>
-  <input type="text" id="fname" name="firstname" placeholder="Your name..">
+  <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
 
   <label for="email">Email</label>
-  <input type="text" id="email" name="email_address" placeholder="Your Email..">
+  <input type="text" id="email" name="email_address" placeholder="Your Email.." required>
 
   <label for="country">Where do you want to live the most?</label>
   <select id="country" name="country">

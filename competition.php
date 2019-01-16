@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Thank You!</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
 <?php
+
+require_once 'participations.php';
+require_once 'functions.php';
+
+require 'PHPMailer-master/src/Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 $information = [
   'Name' => $_POST['firstname'],
@@ -15,6 +18,28 @@ $information = [
 ];
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title><?php /*
+    if (in_array($information['Email'], $participations, true)) {
+      echo 'You already participated';
+    } else {
+      echo 'Thank you!';
+    }
+    */ ?></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<?php
+
+
+
+if (validate_email($information['Email'])){ ?>
+
+<body>
 <h1> Thank You for Participating in our Competition!</h1>
 <h3> Wait and find out if you won! You can either win a bag of money or a piece of cake!</h3>
 <img alt="money" src="money.jpg" height="250px" width="200px"/>
@@ -28,15 +53,7 @@ $information = [
     <li><?php echo "$label: $value"; ?></li>
   <?php endforeach; ?>
 </ul>
-<h3></h3>
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer-master/src/Exception.php';
-require 'PHPMailer-master/src/PHPMailer.php';
-require 'PHPMailer-master/src/SMTP.php';
-require 'vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 //Server settings
@@ -45,7 +62,7 @@ $mail->isSMTP();
 $mail->Host = 's1.mailprovider.email';
 $mail->SMTPAuth = true;
 $mail->Username = 'victor@lfpost.dk';
-$mail->Password = 'Baseball09.';
+$mail->Password = 'En#gRim!gRisesti53';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 
@@ -72,6 +89,11 @@ $mail->AltBody = 'The user has participated with this information: Name: ' . $_P
 
 $mail->send();
 
+
+array_push($participations, $information['Email']);
+} else {
+  echo '<h1 style="font-size: 280px;">Invalid email</h1>';
+}
 ?>
 </body>
 </html>
