@@ -89,8 +89,6 @@ $mail->AltBody = 'The user has participated with this information: Name: ' . $_P
 
 $mail->send();
 
-
-array_push($participations, $information['Email']);
 } else {
   echo '<h1 style="font-size: 280px;">Invalid email</h1>';
 }
